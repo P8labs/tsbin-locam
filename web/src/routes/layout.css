@@ -1,9 +1,5 @@
-/* Locam - Minimal Monochrome Stylesheet */
-
-/* Typography */
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap");
 
-/* Reset & Base */
 * {
   margin: 0;
   padding: 0;
@@ -32,9 +28,10 @@ body {
     sans-serif;
   background: var(--bg);
   color: var(--text);
+  position: relative;
+  min-height: 100vh;
 }
 
-/* Typography Scale */
 h1 {
   font-size: 3.5rem;
   font-weight: 700;
@@ -95,14 +92,12 @@ ul li:before {
   left: 0;
 }
 
-/* Layout */
 .container {
   max-width: 820px;
   margin: 0 auto;
   padding: 0 2rem;
 }
 
-/* Header */
 header {
   padding: 3rem 0;
   border-bottom: 1px solid var(--divider);
@@ -138,7 +133,6 @@ nav a:hover {
   border-bottom-color: var(--text);
 }
 
-/* Footer */
 footer {
   margin-top: 8rem;
   padding: 4rem 0 3rem;
@@ -177,54 +171,85 @@ footer .container {
   margin-top: 1rem;
 }
 
-/* Main Content */
 main {
   padding: 5rem 0;
   position: relative;
 }
 
-/* Background Effect */
 .bg-effect {
-  position: absolute;
-  top: -10%;
-  left: -10%;
-  right: -10%;
-  bottom: -10%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
   z-index: -1;
-  opacity: 0.4;
+  opacity: 0.15;
   pointer-events: none;
-  background: radial-gradient(
-      circle at 20% 30%,
-      rgba(10, 10, 10, 0.03) 0%,
-      transparent 50%
-    ),
-    radial-gradient(
-      circle at 80% 70%,
-      rgba(10, 10, 10, 0.04) 0%,
-      transparent 50%
-    ),
-    radial-gradient(
-      circle at 40% 80%,
-      rgba(10, 10, 10, 0.02) 0%,
-      transparent 50%
-    );
-  animation: bgFloat 20s ease-in-out infinite;
+  overflow: hidden;
 }
 
-@keyframes bgFloat {
+.bg-effect::before {
+  content: "";
+  position: absolute;
+  width: 500px;
+  height: 500px;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    rgba(255, 69, 0, 0.8) 0%,
+    rgba(255, 140, 0, 0.4) 40%,
+    transparent 70%
+  );
+  top: 10%;
+  left: 15%;
+  animation: floatBall1 25s ease-in-out infinite;
+  filter: blur(60px);
+}
+
+.bg-effect::after {
+  content: "";
+  position: absolute;
+  width: 400px;
+  height: 400px;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    rgba(220, 20, 60, 0.8) 0%,
+    rgba(255, 99, 71, 0.4) 40%,
+    transparent 70%
+  );
+  bottom: 15%;
+  right: 20%;
+  animation: floatBall2 20s ease-in-out infinite;
+  filter: blur(60px);
+}
+
+@keyframes floatBall1 {
   0%,
   100% {
     transform: translate(0, 0) scale(1);
   }
   33% {
-    transform: translate(30px, -30px) scale(1.05);
+    transform: translate(50px, -40px) scale(1.1);
   }
   66% {
-    transform: translate(-20px, 20px) scale(0.95);
+    transform: translate(-30px, 30px) scale(0.9);
   }
 }
 
-/* Hero Section */
+@keyframes floatBall2 {
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+  33% {
+    transform: translate(-40px, 50px) scale(1.15);
+  }
+  66% {
+    transform: translate(40px, -30px) scale(0.85);
+  }
+}
+
 .hero {
   padding: 4rem 0 5rem;
   text-align: left;
@@ -253,7 +278,6 @@ main {
   margin-bottom: 0.5rem;
 }
 
-/* Buttons */
 .button-group {
   display: flex;
   gap: 1rem;
@@ -289,7 +313,6 @@ main {
   color: var(--text);
 }
 
-/* Sections */
 section {
   padding: 4rem 0;
   border-bottom: 1px solid var(--divider);
@@ -303,7 +326,6 @@ section h2:first-child {
   margin-top: 0;
 }
 
-/* Download Links */
 .download-list {
   display: flex;
   flex-direction: column;
@@ -336,13 +358,11 @@ section h2:first-child {
   font-size: 0.875rem;
 }
 
-/* Mono Text */
 .mono {
   font-family: "IBM Plex Mono", monospace;
   font-size: 0.875em;
 }
 
-/* Responsive */
 @media (max-width: 768px) {
   .container {
     padding: 0 1.5rem;

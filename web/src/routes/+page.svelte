@@ -1,5 +1,4 @@
 <main>
-  <div class="bg-effect"></div>
   <div class="container">
     <!-- Hero -->
     <div class="hero">
