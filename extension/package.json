@@ -1,0 +1,21 @@
+{
+  "name": "locam",
+  "version": "1.0.0",
+  "description": "Private QR Scanner Local, minimal, privacy-first",
+  "private": true,
+  "scripts": {
+    "bundle": "node scripts/bundle.js",
+    "dev": "tsc --watch"
+  },
+  "dependencies": {
+    "@zxing/browser": "^0.1.5",
+    "@zxing/library": "^0.20.0",
+    "webextension-polyfill": "^0.12.0"
+  },
+  "devDependencies": {
+    "@types/webextension-polyfill": "^0.12.0",
+    "archiver": "^7.0.1",
+    "esbuild": "^0.20.0",
+    "typescript": "^5.3.3"
+  }
+}

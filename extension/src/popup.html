@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Locam Private QR Scanner</title>
+    <link rel="stylesheet" href="popup.css" />
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <h1>Locam</h1>
+        <button id="toggleCamera" class="toggle-btn" style="display: none">Stop Camera</button>
+      </header>
+
+      <div class="content">
+        <div class="scanner-section">
+          <div id="permissionPrompt" class="permission-prompt">
+            <p class="permission-text">
+              Locam needs access to your camera to scan QR codes.
+            </p>
+            <button id="requestPermissionBtn" class="permission-btn">
+              Allow Camera Access
+            </button>
+          </div>
+
+          <div id="videoContainer" class="video-container" style="display: none">
+            <video id="video" autoplay playsinline></video>
+            <canvas id="canvas" style="display: none"></canvas>
+          </div>
+
+          <div id="errorSection" class="error-section" style="display: none">
+            <div class="error-icon">⚠</div>
+            <div class="error-title" id="errorTitle">Camera Access Denied</div>
+            <div class="error-message" id="errorMessage"></div>
+            <div class="error-actions">
+              <button id="retryBtn" class="action-btn secondary">Try Again</button>
+              <button id="troubleshootBtn" class="action-btn secondary">Help</button>
+            </div>
+            <div id="troubleshootSection" class="troubleshoot-section" style="display: none">
+              <div class="troubleshoot-title">Troubleshooting Steps:</div>
+              <ol class="troubleshoot-steps">
+                <li>Click the extension icon, then click "Settings"</li>
+                <li>Look for "Permissions" or "Site settings"</li>
+                <li>Enable camera permission for this extension</li>
+                <li>Refresh this popup and try again</li>
+              </ol>
+              <div class="troubleshoot-note">
+                Or check your browser's settings: Settings → Privacy & Security → Camera
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div id="resultSection" class="result-section" style="display: none">
+          <div class="result-label">Scan Result</div>
+          <div id="resultContent" class="result-content"></div>
+          <div class="result-actions">
+            <button id="copyBtn" class="action-btn">Copy</button>
+            <button id="openBtn" class="action-btn" style="display: none">
+              Open
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <footer>
+        <p class="privacy-note">Runs locally • No data leaves your device</p>
+        <div class="footer-links">
+          <span class="built-by">Built at P8labs</span>
+          <span class="separator">•</span>
+          <a
+            href="https://locam.tsbin.tech"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="footer-link"
+            >Home</a
+          >
+          <span class="separator">•</span>
+          <a
+            href="https://locam.tsbin.tech/terms"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="footer-link"
+            >Terms</a
+          >
+        </div>
+      </footer>
+    </div>
+
+    <script src="popup.js" type="module"></script>
+  </body>
+</html>

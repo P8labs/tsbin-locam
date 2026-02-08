@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Camera Access - Locam</title>
+    <link rel="stylesheet" href="camera-access.css" />
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <h1>Locam</h1>
+      </header>
+
+      <main>
+        <div id="requestSection" class="section">
+          <div class="icon-container">
+            <svg
+              width="64"
+              height="64"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <path
+                d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"
+              ></path>
+              <circle cx="12" cy="13" r="4"></circle>
+            </svg>
+          </div>
+          <h2>Camera Access Required</h2>
+          <p class="description">
+            Locam needs access to your camera to scan QR codes. Your camera feed
+            is processed locally on your device - no data is sent to any server.
+          </p>
+          <button id="requestCameraBtn" class="primary-btn">
+            Allow Camera Access
+          </button>
+        </div>
+
+        <div id="troubleshootSection" class="section" style="display: none">
+          <div class="icon-container error">
+            <svg
+              width="64"
+              height="64"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <circle cx="12" cy="12" r="10"></circle>
+              <line x1="12" y1="8" x2="12" y2="12"></line>
+              <line x1="12" y1="16" x2="12.01" y2="16"></line>
+            </svg>
+          </div>
+          <h2>Camera Access Denied</h2>
+          <p class="description">
+            To use Locam, you need to allow camera access. Follow these steps:
+          </p>
+
+          <div class="troubleshoot-steps">
+            <div class="step">
+              <div class="step-number">1</div>
+              <div class="step-content">
+                <h3>Check Firefox Permissions</h3>
+                <p>
+                  Click the lock icon in the address bar and ensure camera
+                  permissions are set to "Allow"
+                </p>
+              </div>
+            </div>
+
+            <div class="step">
+              <div class="step-number">2</div>
+              <div class="step-content">
+                <h3>Check System Settings</h3>
+                <p>
+                  Make sure Firefox has camera access in your system settings
+                  (Privacy & Security)
+                </p>
+              </div>
+            </div>
+
+            <div class="step">
+              <div class="step-number">3</div>
+              <div class="step-content">
+                <h3>Restart Firefox</h3>
+                <p>
+                  If issues persist, try restarting Firefox and granting
+                  permission again
+                </p>
+              </div>
+            </div>
+
+            <div class="step">
+              <div class="step-number">4</div>
+              <div class="step-content">
+                <h3>Check Camera Availability</h3>
+                <p>
+                  Ensure your camera is connected and not being used by another
+                  application
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <button id="retryBtn" class="primary-btn">Try Again</button>
+        </div>
+
+        <div id="successSection" class="section" style="display: none">
+          <div class="icon-container success">
+            <svg
+              width="64"
+              height="64"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <polyline points="20 6 9 17 4 12"></polyline>
+            </svg>
+          </div>
+          <h2>Camera Access Granted</h2>
+          <p class="description">
+            You can now close this tab and use the Locam extension to scan QR
+            codes.
+          </p>
+          <button id="closeBtn" class="primary-btn">Close Tab</button>
+        </div>
+      </main>
+
+      <footer>
+        <p class="privacy-note">100% Private • No tracking • All local</p>
+      </footer>
+    </div>
+
+    <script src="camera-access.js" type="module"></script>
+  </body>
+</html>
