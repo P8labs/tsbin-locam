@@ -9,14 +9,22 @@ const DIST_DIR = path.join(__dirname, "../dist");
 const SRC_DIR = path.join(__dirname, "../src");
 const ICONS_DIR = path.join(__dirname, "../icons");
 const MANIFEST = path.join(__dirname, "../metadata.json");
+const PACKAGE_JSON = path.join(__dirname, "../package.json");
 
-const packageJson = JSON.parse(
-  fs.readFileSync(path.join(__dirname, "../package.json"), "utf-8"),
-);
+const packageJson = JSON.parse(fs.readFileSync(PACKAGE_JSON, "utf-8"));
 const version = packageJson.version;
+
+function syncVersion() {
+  console.log(`Syncing version ${version} to metadata.json...`);
+  const metadata = JSON.parse(fs.readFileSync(MANIFEST, "utf-8"));
+  metadata.version = version;
+  fs.writeFileSync(MANIFEST, JSON.stringify(metadata, null, 2) + "\n");
+}
 
 async function build() {
   console.log("Building Locam...");
+
+  syncVersion();
 
   if (fs.existsSync(BUILD_DIR)) {
     fs.rmSync(BUILD_DIR, { recursive: true });

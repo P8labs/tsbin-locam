@@ -18,7 +18,6 @@ async function bundle(outdir) {
       legalComments: "none",
     });
 
-    // Bundle camera-access.ts
     await esbuild.build({
       entryPoints: [path.join(__dirname, "../src/camera-access.ts")],
       bundle: true,
