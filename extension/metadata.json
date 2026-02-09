@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "Locam Private QR Scanner",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Scan QR codes locally. No data collection, no tracking, no cloud.",
   "icons": {
     "16": "icons/icon16.png",
@@ -18,5 +18,15 @@
       "128": "icons/icon128.png"
     },
     "default_title": "Locam Scan QR Code"
+  },
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "locam@p8labs.tech",
+      "data_collection_permissions": {
+        "required": [
+          "none"
+        ]
+      }
+    }
   }
 }
