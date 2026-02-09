@@ -86,6 +86,48 @@
       </div>
     </section>
 
+    <!-- Related Projects -->
+    <section>
+      <h2>More Tools</h2>
+      <div class="tool-grid">
+        <div class="tool">
+          <h3>
+            <a href="https://tsbin.tech" target="_blank" rel="noopener"
+              >tsbin.tech</a
+            >
+          </h3>
+          <p>
+            A secure, temporary file and text sharing platform designed with
+            privacy in mind. Share sensitive information knowing it will
+            automatically expire and be permanently deleted.
+          </p>
+        </div>
+        <div class="tool">
+          <h3>
+            <a href="https://mail.tsbin.tech" target="_blank" rel="noopener"
+              >mail.tsbin.tech</a
+            >
+          </h3>
+          <p>
+            A temporary email service that allows you to create disposable email
+            addresses without registration. Perfect for testing, signing up for
+            services, or avoiding spam in your primary inbox.
+          </p>
+        </div>
+        <div class="tool">
+          <h3>
+            <a href="https://paper.tsbin.tech" target="_blank" rel="noopener"
+              >paper.tsbin.tech</a
+            >
+          </h3>
+          <p>
+            A tiny tool that turns Markdown into something you can share. You
+            paste. We render. You export.
+          </p>
+        </div>
+      </div>
+    </section>
+
     <!-- About Preview -->
     <section>
       <h2>About</h2>

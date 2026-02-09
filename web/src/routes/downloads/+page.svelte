@@ -14,24 +14,22 @@
       <div class="download-item" id="chrome">
         <h3>Chrome Web Store</h3>
         <p>For Chrome, Edge, Brave, Arc, and other Chromium-based browsers</p>
-        <a
-          href="https://chrome.google.com/webstore"
-          target="_blank"
-          rel="noopener">chrome.google.com/webstore</a
-        >
+        <a href="#top" rel="noopener">In Review</a>
       </div>
 
       <div class="download-item" id="firefox">
         <h3>Firefox Add-ons</h3>
         <p>For Firefox and Firefox-based browsers</p>
-        <a href="https://addons.mozilla.org" target="_blank" rel="noopener"
-          >addons.mozilla.org</a
+        <a
+          href="https://addons.mozilla.org/en-US/firefox/addon/locam-private-qr-scanner"
+          target="_blank"
+          rel="noopener">addons.mozilla.org/locam-private-qr-scanner</a
         >
       </div>
 
       <div class="download-item">
         <h3>GitHub Releases</h3>
-        <p>Manual installation from source or release packages</p>
+        <p>Manual installation from source or release packages (zip, crx)</p>
         <a
           href="https://github.com/P8labs/tsbin-locam/releases"
           target="_blank"

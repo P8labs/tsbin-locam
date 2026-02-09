@@ -363,6 +363,24 @@ section h2:first-child {
   font-size: 0.875em;
 }
 
+.tool-grid {
+  display: grid;
+  gap: 2.5rem;
+  margin-top: 2rem;
+}
+
+.tool h3 {
+  margin-top: 0;
+  margin-bottom: 0.75rem;
+  font-size: 1.125rem;
+}
+
+.tool p {
+  font-size: 0.9375rem;
+  opacity: 0.8;
+  margin-bottom: 0;
+}
+
 @media (max-width: 768px) {
   .container {
     padding: 0 1.5rem;
