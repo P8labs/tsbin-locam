@@ -5,7 +5,12 @@
   "private": true,
   "scripts": {
     "bundle": "node scripts/bundle.js",
-    "dev": "tsc --watch"
+    "dev": "tsc --watch",
+    "release": "pnpm run bundle && node scripts/release.js",
+    "version": "node scripts/version.js",
+    "version:patch": "node scripts/version.js patch",
+    "version:minor": "node scripts/version.js minor",
+    "version:major": "node scripts/version.js major"
   },
   "dependencies": {
     "@zxing/browser": "^0.1.5",
