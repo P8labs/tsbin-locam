@@ -3,7 +3,7 @@ name: Release Browser Extensions
 on:
   push:
     tags:
-      - "v*.*.*"
+      - "*"
   workflow_dispatch:
     inputs:
       version:
@@ -56,29 +56,28 @@ jobs:
         run: pnpm run bundle
         working-directory: extension
 
+      - name: Create dist directory
+        run: mkdir -p extension/dist
+
+      - name: Pack extension directory
+        id: packExtensionDir
+        uses: cardinalby/webext-buildtools-pack-extension-dir-action@v1
+        with:
+          extensionDir: "extension/build"
+          zipFilePath: "extension/dist/extension.zip"
+
       - name: Create Firefox package
-        run: |
-          cd extension
-          mkdir -p dist
-          cd build
-          zip -r ../dist/locam-firefox-v${{ steps.version.outputs.VERSION }}.zip . -x "*.DS_Store"
-          cd ..
+        run: cp extension/dist/extension.zip extension/dist/locam-firefox-v${{ steps.version.outputs.VERSION }}.zip
 
       - name: Create Chrome package
-        run: |
-          cd extension
-          cd build
-          zip -r ../dist/locam-chrome-v${{ steps.version.outputs.VERSION }}.zip . -x "*.DS_Store"
-          cd ..
+        run: cp extension/dist/extension.zip extension/dist/locam-chrome-v${{ steps.version.outputs.VERSION }}.zip
 
-      - name: Install CRX creation tool
-        run: npm install -g crx3
-
-      - name: Create CRX file (unsigned)
-        run: |
-          cd extension/build
-          # Create unsigned CRX (for testing/manual installation)
-          zip -r ../dist/locam-v${{ steps.version.outputs.VERSION }}.crx . -x "*.DS_Store"
+      - name: Create CRX file
+        uses: cardinalby/webext-buildtools-chrome-crx-action@v2
+        with:
+          zipFilePath: "extension/dist/extension.zip"
+          crxFilePath: "extension/dist/locam-v${{ steps.version.outputs.VERSION }}.crx"
+          privateKey: ${{ secrets.CHROME_CRX_PRIVATE_KEY }}
         continue-on-error: true
 
       - name: Generate checksums
