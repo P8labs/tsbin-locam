@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "Locam Private QR Scanner",
-  "version": "1.0.1",
+  "version": "1.1.0",
   "description": "Scan QR codes locally. No data collection, no tracking, no cloud.",
   "permissions": [
     "storage"
