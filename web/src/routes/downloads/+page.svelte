@@ -14,13 +14,17 @@
       <div class="download-item" id="chrome">
         <h3>Chrome Web Store</h3>
         <p>For Chrome, Edge, Brave, Arc, and other Chromium-based browsers</p>
-        <a href="#top" rel="noopener">In Review (till use it from github)</a>
+        <a href="https://github.com/P8labs/tsbin-locam/releases" rel="noopener"
+          >In Review (till use it from github)</a
+        >
       </div>
 
       <div class="download-item" id="firefox">
         <h3>Firefox Add-ons</h3>
         <p>For Firefox and Firefox-based browsers</p>
-        <a href="#top" rel="noopener">In Review (till use it from github)</a>
+        <a href="https://github.com/P8labs/tsbin-locam/releases" rel="noopener"
+          >In Review (till use it from github)</a
+        >
       </div>
 
       <div class="download-item">
