@@ -10,144 +10,86 @@
     <div class="container">
       <header>
         <h1>Locam</h1>
-        <button id="toggleCamera" class="toggle-btn" style="display: none">
-          Stop Camera
-        </button>
+        <div class="header-buttons">
+          <button
+            id="requestCameraBtn"
+            class="toggle-btn"
+            style="display: none"
+          >
+            Allow Camera
+          </button>
+          <button id="toggleCamera" class="toggle-btn" style="display: none">
+            Stop Camera
+          </button>
+          <button id="galleryBtn" class="toggle-btn" style="display: none">
+            Gallery
+          </button>
+        </div>
       </header>
 
-      <nav class="tabs">
-        <button id="scanTab" class="tab-btn active">QR Scanner</button>
-        <button id="cameraTab" class="tab-btn">Camera</button>
-        <button id="galleryTab" class="tab-btn">Gallery</button>
-      </nav>
-
       <div class="content">
-        <div id="scannerTab" class="tab-content active">
-          <div class="scanner-section">
-            <div id="permissionPrompt" class="permission-prompt">
-              <p class="permission-text">
-                Locam needs access to your camera to scan QR codes.
-              </p>
-              <button id="requestPermissionBtn" class="permission-btn">
-                Allow Camera Access
-              </button>
-            </div>
+        <div id="permissionPrompt" class="permission-prompt">
+          <p class="permission-text">
+            Locam needs camera access for QR scanning and photo capture.
+          </p>
+        </div>
 
-            <div
-              id="videoContainer"
-              class="video-container"
-              style="display: none"
-            >
-              <video id="video" autoplay playsinline></video>
-              <canvas id="canvas" style="display: none"></canvas>
-            </div>
+        <div id="cameraReady" class="camera-ready" style="display: none">
+          <div class="ready-icon">📹</div>
+          <p class="ready-text">Camera ready!</p>
+          <p class="ready-hint">
+            Click "Start Camera" to begin scanning QR codes or capturing photos
+          </p>
+        </div>
 
-            <div id="errorSection" class="error-section" style="display: none">
-              <div class="error-icon">⚠</div>
-              <div class="error-title" id="errorTitle">
-                Camera Access Denied
-              </div>
-              <div class="error-message" id="errorMessage"></div>
-              <div class="error-actions">
-                <button id="retryBtn" class="action-btn secondary">
-                  Try Again
-                </button>
-                <button id="troubleshootBtn" class="action-btn secondary">
-                  Help
-                </button>
-              </div>
-              <div
-                id="troubleshootSection"
-                class="troubleshoot-section"
-                style="display: none"
-              >
-                <div class="troubleshoot-title">Troubleshooting Steps:</div>
-                <ol class="troubleshoot-steps">
-                  <li>Click the extension icon, then click "Settings"</li>
-                  <li>Look for "Permissions" or "Site settings"</li>
-                  <li>Enable camera permission for this extension</li>
-                  <li>Refresh this popup and try again</li>
-                </ol>
-                <div class="troubleshoot-note">
-                  Or check your browser's settings: Settings → Privacy &
-                  Security → Camera
-                </div>
-              </div>
-            </div>
-          </div>
+        <div
+          id="sharedVideoContainer"
+          class="shared-video-container"
+          style="display: none"
+        >
+          <video id="video" autoplay playsinline></video>
+          <canvas id="canvas" style="display: none"></canvas>
+        </div>
 
-          <div id="resultSection" class="result-section" style="display: none">
-            <div class="result-label">Scan Result</div>
-            <div id="resultContent" class="result-content"></div>
-            <div class="result-actions">
-              <button id="copyBtn" class="action-btn">Copy</button>
-              <button id="openBtn" class="action-btn" style="display: none">
-                Open
-              </button>
-            </div>
+        <button id="captureBtn" class="toggle-btn" style="display: none">
+          Capture Photo
+        </button>
+
+        <div id="errorSection" class="error-section" style="display: none">
+          <div class="error-icon">⚠</div>
+          <div class="error-title">Camera Access Denied</div>
+          <div class="error-message" id="errorMessage"></div>
+        </div>
+
+        <!-- QR Scan Result -->
+        <div id="resultSection" class="result-section" style="display: none">
+          <div class="result-label">Scan Result</div>
+          <div id="resultContent" class="result-content"></div>
+          <div class="result-actions">
+            <button id="copyBtn" class="action-btn">Copy</button>
+            <button id="openBtn" class="action-btn" style="display: none">
+              Open
+            </button>
           </div>
         </div>
 
-        <div id="cameraTabContent" class="tab-content">
-          <div class="camera-section">
-            <div id="cameraPermissionPrompt" class="permission-prompt">
-              <p class="permission-text">
-                Locam needs access to your camera to capture images.
-              </p>
-              <button id="requestCameraPermissionBtn" class="permission-btn">
-                Allow Camera Access
-              </button>
-            </div>
-
-            <div
-              id="cameraVideoContainer"
-              class="video-container"
+        <!-- Gallery View -->
+        <div id="galleryView" class="gallery-view" style="display: none">
+          <div class="gallery-header">
+            <h3>Captured Images</h3>
+            <button
+              id="clearGalleryBtn"
+              class="action-btn secondary"
               style="display: none"
             >
-              <video id="cameraVideo" autoplay playsinline></video>
-              <div class="capture-controls">
-                <button id="captureBtn" class="capture-btn">📷 Capture</button>
-              </div>
-            </div>
-            <div class="tagline">
-              📸 Click the images of random events and save it — It's fun to see
-              my face while coding at 3AM
-            </div>
-            <div
-              id="cameraErrorSection"
-              class="error-section"
-              style="display: none"
-            >
-              <div class="error-icon">⚠</div>
-              <div class="error-title">Camera Access Denied</div>
-              <div class="error-message" id="cameraErrorMessage"></div>
-              <button id="retryCameraBtn" class="action-btn secondary">
-                Try Again
-              </button>
-            </div>
+              Clear All
+            </button>
           </div>
-        </div>
-
-        <div id="galleryTabContent" class="tab-content">
-          <div class="gallery-section">
-            <div class="gallery-header">
-              <h2>Your Captured Images</h2>
-              <button
-                id="clearGalleryBtn"
-                class="action-btn secondary"
-                style="display: none; margin-left: 5px"
-              >
-                Clear All
-              </button>
-            </div>
-            <div id="galleryGrid" class="gallery-grid">
-              <div class="empty-gallery">
-                <div class="empty-icon">📷</div>
-                <p>No images captured yet</p>
-                <p class="empty-hint">
-                  Switch to the Camera tab to start capturing
-                </p>
-              </div>
+          <div id="galleryGrid" class="gallery-grid">
+            <div class="empty-gallery">
+              <div class="empty-icon">📷</div>
+              <p>No images captured yet</p>
+              <p class="empty-hint">Use the capture button to save photos</p>
             </div>
           </div>
         </div>

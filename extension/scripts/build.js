@@ -8,7 +8,7 @@ async function bundle(outdir) {
     await esbuild.build({
       entryPoints: [path.join(__dirname, "../src/popup.ts")],
       bundle: true,
-      minify: true,
+      minify: false,
       sourcemap: false,
       target: ["es2020"],
       format: "esm",
@@ -21,7 +21,7 @@ async function bundle(outdir) {
     await esbuild.build({
       entryPoints: [path.join(__dirname, "../src/camera-access.ts")],
       bundle: true,
-      minify: true,
+      minify: false,
       sourcemap: false,
       target: ["es2020"],
       format: "esm",

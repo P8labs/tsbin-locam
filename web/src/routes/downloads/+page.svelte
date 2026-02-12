@@ -22,8 +22,9 @@
       <div class="download-item" id="firefox">
         <h3>Firefox Add-ons</h3>
         <p>For Firefox and Firefox-based browsers</p>
-        <a href="https://github.com/P8labs/tsbin-locam/releases" rel="noopener"
-          >In Review (till use it from github)</a
+        <a
+          href="https://addons.mozilla.org/en-US/firefox/addon/locam-private-qr-scanner"
+          rel="noopener">addons.mozilla.org/locam-private-qr-scanner</a
         >
       </div>
 
