@@ -126,7 +126,7 @@ jobs:
               1. Download `locam-v${{ steps.version.outputs.VERSION }}.xpi`
               2. Go to `about:addons`
               3. Click the gear icon and select "Install Add-on From File"
-              4. Select the downloaded zip file
+              4. Select the downloaded file
 
             **Chrome/Edge/Brave:**
             1. Download `locam-chrome-v${{ steps.version.outputs.VERSION }}.zip`
