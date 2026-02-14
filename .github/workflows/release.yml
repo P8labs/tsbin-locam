@@ -76,8 +76,7 @@ jobs:
             --artifacts-dir=extension/dist \
             --api-key=${{ secrets.FIREFOX_API_KEY }} \
             --api-secret=${{ secrets.FIREFOX_API_SECRET }} \
-            --channel=listed
-            --amo-metadata=extension/firefox.json
+            --channel=unlisted
         continue-on-error: true
 
       - name: Create XPI package (fallback to unsigned)
