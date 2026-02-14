@@ -76,16 +76,16 @@ jobs:
             --artifacts-dir=extension/dist \
             --api-key=${{ secrets.FIREFOX_API_KEY }} \
             --api-secret=${{ secrets.FIREFOX_API_SECRET }} \
-            --channel=unlisted
+            --channel=listed
         continue-on-error: true
 
-      - name: Create XPI package (fallback to unsigned)
+      - name: Create XPI package
         run: |
-          if ls extension/dist/locam-*.xpi 2>/dev/null; then
-            mv extension/dist/locam-*.xpi extension/dist/locam-v${{ steps.version.outputs.VERSION }}.xpi 2>/dev/null || true
+          if ls extension/dist/locam*.xpi 2>/dev/null; then
+            mv extension/dist/locam*.xpi extension/dist/locam-v${{ steps.version.outputs.VERSION }}.xpi 2>/dev/null || true
           fi
           if [ ! -f extension/dist/locam-v${{ steps.version.outputs.VERSION }}.xpi ]; then
-            cp extension/dist/extension.zip extension/dist/locam-v${{ steps.version.outputs.VERSION }}.xpi
+            cp extension/dist/extension.zip extension/dist/locam-unsigned-v${{ steps.version.outputs.VERSION }}.xpi
           fi
 
       - name: Create Zip package
