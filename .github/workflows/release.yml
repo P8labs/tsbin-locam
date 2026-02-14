@@ -124,9 +124,9 @@ jobs:
 
             Manual Way:
               1. Download `locam-v${{ steps.version.outputs.VERSION }}.xpi`
-              2. Go to `about:debugging`
-              3. Click the "This Firefox" and select "Load Temporaty Add-on"
-              4. Select the downloaded XPI file
+              2. Go to `about:addons`
+              3. Click the gear icon and select "Install Add-on From File"
+              4. Select the downloaded zip file
 
             **Chrome/Edge/Brave:**
             1. Download `locam-chrome-v${{ steps.version.outputs.VERSION }}.zip`
