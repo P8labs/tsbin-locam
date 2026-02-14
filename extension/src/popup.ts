@@ -1,5 +1,6 @@
 import { Camera } from "./lib/camera.js";
 import { QRScanner } from "./lib/scanner.js";
+import { ThemeManager } from "./lib/theme.js";
 
 interface CapturedImage {
   id: string;
@@ -10,6 +11,7 @@ interface CapturedImage {
 class PopupController {
   private camera: Camera;
   private scanner: QRScanner;
+  private themeManager: ThemeManager;
   private elements: {
     video: HTMLVideoElement;
     sharedVideoContainer: HTMLDivElement;
@@ -27,6 +29,7 @@ class PopupController {
     captureBtn: HTMLButtonElement;
     galleryGrid: HTMLDivElement;
     clearGalleryBtn: HTMLButtonElement;
+    themeToggleBtn: HTMLButtonElement;
   };
   private lastResult: string = "";
   private capturedImages: CapturedImage[] = [];
@@ -60,12 +63,16 @@ class PopupController {
       clearGalleryBtn: document.getElementById(
         "clearGalleryBtn",
       ) as HTMLButtonElement,
+      themeToggleBtn: document.getElementById(
+        "themeToggle",
+      ) as HTMLButtonElement,
     };
 
     this.camera = new Camera(this.elements.video);
     this.scanner = new QRScanner();
-    this.setupEventListeners();
+    this.themeManager = new ThemeManager(this.elements.themeToggleBtn);
 
+    this.setupEventListeners();
     this.initialize();
   }
 
@@ -89,6 +96,9 @@ class PopupController {
     this.elements.clearGalleryBtn.addEventListener("click", () =>
       this.clearGallery(),
     );
+    this.elements.themeToggleBtn.addEventListener("click", () =>
+      this.themeManager.toggleTheme(),
+    );
 
     window.addEventListener("unload", () => {
       this.scanner.stopScanning();
@@ -99,6 +109,7 @@ class PopupController {
   private async initialize(): Promise<void> {
     await this.loadGallery();
     await this.checkCameraPermission();
+    await this.themeManager.loadTheme();
   }
 
   private async checkCameraPermission(): Promise<void> {
@@ -140,11 +151,9 @@ class PopupController {
     const isVisible = this.elements.galleryView.style.display !== "none";
 
     if (isVisible) {
-      // Hide gallery, show camera
       this.elements.galleryView.style.display = "none";
       this.elements.galleryBtn.textContent = "Gallery";
 
-      // Show camera button
       if (this.cameraPermissionGranted) {
         this.elements.toggleCameraBtn.style.display = "block";
         if (this.camera.isActive()) {

@@ -1,3 +1,5 @@
+import { ThemeManager } from "./lib/theme.js";
+
 class CameraAccessController {
   private elements: {
     requestSection: HTMLDivElement;
@@ -25,6 +27,10 @@ class CameraAccessController {
       ) as HTMLDivElement,
       closeBtn: document.getElementById("closeBtn") as HTMLButtonElement,
     };
+
+    // Initialize theme manager
+    const themeManager = ThemeManager.getInstance();
+    themeManager.setupThemeToggle("themeToggle");
 
     this.setupEventListeners();
   }
