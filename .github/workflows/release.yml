@@ -66,8 +66,28 @@ jobs:
           extensionDir: "extension/build"
           zipFilePath: "extension/dist/extension.zip"
 
-      - name: Create XPI package
-        run: cp extension/dist/extension.zip extension/dist/locam-v${{ steps.version.outputs.VERSION }}.xpi
+      - name: Install web-ext
+        run: npm install -g web-ext
+
+      - name: Sign XPI package with web-ext
+        run: |
+          web-ext sign \
+            --source-dir=extension/build \
+            --artifacts-dir=extension/dist \
+            --api-key=${{ secrets.FIREFOX_API_KEY }} \
+            --api-secret=${{ secrets.FIREFOX_API_SECRET }} \
+            --channel=listed
+            --amo-metadata=extension/firefox.json
+        continue-on-error: true
+
+      - name: Create XPI package (fallback to unsigned)
+        run: |
+          if ls extension/dist/locam-*.xpi 2>/dev/null; then
+            mv extension/dist/locam-*.xpi extension/dist/locam-v${{ steps.version.outputs.VERSION }}.xpi 2>/dev/null || true
+          fi
+          if [ ! -f extension/dist/locam-v${{ steps.version.outputs.VERSION }}.xpi ]; then
+            cp extension/dist/extension.zip extension/dist/locam-v${{ steps.version.outputs.VERSION }}.xpi
+          fi
 
       - name: Create Zip package
         run: cp extension/dist/extension.zip extension/dist/locam-v${{ steps.version.outputs.VERSION }}.zip
@@ -87,7 +107,7 @@ jobs:
           cat checksums.txt
 
       - name: Create Release
-        uses: softprops/action-gh-release@v1
+        uses: softprops/action-gh-release@v2
         with:
           files: |
             extension/dist/locam-v${{ steps.version.outputs.VERSION }}.xpi
@@ -124,5 +144,7 @@ jobs:
             See `checksums.txt` for SHA256 checksums of all files.
           draft: false
           prerelease: false
+          generate_release_notes: true
+
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

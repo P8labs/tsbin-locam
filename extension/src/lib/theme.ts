@@ -31,7 +31,6 @@ export class ThemeManager {
   }
 
   public applyTheme(): void {
-    console.log(this.themeToggleBtn);
     document.documentElement.setAttribute("data-theme", this.currentTheme);
     this.themeToggleBtn.textContent = this.currentTheme;
   }

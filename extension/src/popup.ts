@@ -30,6 +30,7 @@ class PopupController {
     galleryGrid: HTMLDivElement;
     clearGalleryBtn: HTMLButtonElement;
     themeToggleBtn: HTMLButtonElement;
+    versionElement: HTMLElement;
   };
   private lastResult: string = "";
   private capturedImages: CapturedImage[] = [];
@@ -66,6 +67,7 @@ class PopupController {
       themeToggleBtn: document.getElementById(
         "themeToggle",
       ) as HTMLButtonElement,
+      versionElement: document.getElementById("version") as HTMLElement,
     };
 
     this.camera = new Camera(this.elements.video);
@@ -110,6 +112,7 @@ class PopupController {
     await this.loadGallery();
     await this.checkCameraPermission();
     await this.themeManager.loadTheme();
+    await this.loadVersion();
   }
 
   private async checkCameraPermission(): Promise<void> {
@@ -144,6 +147,25 @@ class PopupController {
       this.cameraPermissionGranted = granted;
     } catch (error) {
       console.error("Failed to save permission:", error);
+    }
+  }
+
+  private async loadVersion(): Promise<void> {
+    try {
+      const manifest = browserAPI.runtime.getManifest() as {
+        version: string;
+        manifest_version: number;
+        name: string;
+      };
+
+      if (this.elements.versionElement && manifest.version) {
+        this.elements.versionElement.textContent = `v${manifest.version}`;
+      }
+    } catch (error) {
+      console.error("Failed to load version:", error);
+      if (this.elements.versionElement) {
+        this.elements.versionElement.textContent = "prod";
+      }
     }
   }
 
@@ -594,6 +616,12 @@ class PopupController {
 declare const browser: {
   runtime: {
     getURL: (path: string) => string;
+    getManifest: () => {
+      version: string;
+      manifest_version: number;
+      name: string;
+      [key: string]: any;
+    };
   };
   tabs: {
     create: (options: { url: string }) => Promise<any>;
@@ -610,6 +638,12 @@ declare const browser: {
 declare const chrome: {
   runtime: {
     getURL: (path: string) => string;
+    getManifest: () => {
+      version: string;
+      manifest_version: number;
+      name: string;
+      [key: string]: any;
+    };
   };
   tabs: {
     create: (options: { url: string }) => Promise<any>;
