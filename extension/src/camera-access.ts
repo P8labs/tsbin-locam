@@ -28,10 +28,6 @@ class CameraAccessController {
       closeBtn: document.getElementById("closeBtn") as HTMLButtonElement,
     };
 
-    // Initialize theme manager
-    const themeManager = ThemeManager.getInstance();
-    themeManager.setupThemeToggle("themeToggle");
-
     this.setupEventListeners();
   }
 
