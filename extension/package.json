@@ -1,6 +1,6 @@
 {
   "name": "locam",
-  "version": "2.2.1",
+  "version": "2.2.2",
   "description": "Private QR Scanner Local, minimal, privacy-first",
   "private": true,
   "scripts": {
